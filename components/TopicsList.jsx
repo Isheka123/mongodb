@@ -21,24 +21,55 @@ export default async function TopicsList() {
     const { topics } = await getTopics();
     return (
         <>
-      {data?.topics?.map((t) => (
-        <div
-          key={t._id}
-          className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-        >
-          <div>
-            <h2 className="font-bold text-2xl">{t.title}</h2>
-            <div>{t.description}</div>
-          </div>
-
-          <div className="flex gap-2">
-            <RemoveBtn id={t._id} />
-            <Link href={`/editTopic/${t._id}`}>
-              <HiPencilAlt size={24} />
-            </Link>
-          </div>
-        </div>
-      ))}
-    </>
+            {topics.map((t) => (
+                <div
+                    key={t._id}
+                    style={{
+                        border: '1px solid #ccc',
+                        padding: '20px',
+                        marginLeft: '50px',
+                        marginRight: '50px',
+                        marginBottom: '10px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <div
+                        style={{
+                            flex: '1',
+                        }}
+                    >
+                        <h2
+                            style={{
+                                fontWeight: 'bold',
+                                fontSize: '1.5rem',
+                            }}
+                        >
+                            {t.title}
+                        </h2>
+                        <div
+                            style={{
+                                marginTop: '5px',
+                                color: '#666',
+                            }}
+                        >
+                            {t.description}
+                        </div>
+                    </div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            gap: '30px',
+                        }}
+                    >
+                        <RemoveBtn id={t._id} />
+                        <Link href={`/editTopic/${t._id}`}>
+                            <HiPencilAlt size={24} />
+                        </Link>
+                    </div>
+                </div>
+            ))}
+        </>
     );
 }
